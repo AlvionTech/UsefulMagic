@@ -6,8 +6,9 @@ import java.util.UUID
 
 object ClientManaManager {
     val data by lazy {
-        val data = MagicPlayerData(Minecraft.getInstance().player!!.uuid)
-        data
+        val player = Minecraft.getInstance().player
+        val uuid = player?.uuid ?: UUID.randomUUID()
+        MagicPlayerData(uuid)
     }
 
     fun getSelfMana(): MagicPlayerData {

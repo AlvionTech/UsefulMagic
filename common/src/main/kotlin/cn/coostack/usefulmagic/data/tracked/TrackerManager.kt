@@ -10,46 +10,31 @@ import net.minecraft.world.entity.Entity
  * 通过实体class注册，他和他的子类均有此方法，需要手动写ID用来区分
  */
 object TrackerManager {
-    private val holdersServer = HashSet<Entity>()
-    private val pendingHoldersServer = HashSet<Entity>()
-    private var tickingServer = false
+    private val holdersServer = java.util.concurrent.ConcurrentHashMap.newKeySet<Entity>()
 
     fun applyHolder(holder: Entity) {
         if (holder.level().isClientSide) {
-            return
-        }
-        if (tickingServer) {
-            pendingHoldersServer.add(holder)
             return
         }
         holdersServer.add(holder)
     }
 
     fun tickOnServer() {
-        tickingServer = true
-        try {
-            val iterator = holdersServer.iterator()
-            while (iterator.hasNext()) {
-                val holder = iterator.next()
-                if (!holder.isAlive) {
-                    iterator.remove()
-                    continue
-                }
-                val tracker = holder.asHolder().getCooTracker()
-                val hasDirtyArgs = tracker.trackedDirties.values.any { dirty -> dirty }
-                if (hasDirtyArgs) {
-                    UsefulMagicServices.PLATFORM.getIterateTracker().trackWith(
-                        holder, PacketS2CTrackerToggle(
-                            tracker, holder.id
-                        ), true
-                    )
-                }
+        val iterator = holdersServer.iterator()
+        while (iterator.hasNext()) {
+            val holder = iterator.next()
+            if (!holder.isAlive) {
+                iterator.remove()
+                continue
             }
-        } finally {
-            tickingServer = false
-            if (pendingHoldersServer.isNotEmpty()) {
-                holdersServer.addAll(pendingHoldersServer)
-                pendingHoldersServer.clear()
+            val tracker = holder.asHolder().getCooTracker()
+            val hasDirtyArgs = tracker.trackedDirties.values.any { dirty -> dirty }
+            if (hasDirtyArgs) {
+                UsefulMagicServices.PLATFORM.getIterateTracker().trackWith(
+                    holder, PacketS2CTrackerToggle(
+                        tracker, holder.id
+                    ), true
+                )
             }
         }
     }

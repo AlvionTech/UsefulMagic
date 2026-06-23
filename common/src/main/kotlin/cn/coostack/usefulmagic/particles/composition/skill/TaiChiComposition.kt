@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.particles.composition.skill
+package cn.coostack.usefulmagic.particles.composition.skill
 
 import cn.coostack.cooparticlesapi.network.particle.composition.AutoParticleComposition
 import cn.coostack.cooparticlesapi.network.particle.composition.ParticleShapeComposition

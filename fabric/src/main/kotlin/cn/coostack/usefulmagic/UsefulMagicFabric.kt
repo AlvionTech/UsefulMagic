@@ -86,7 +86,7 @@ object UsefulMagicFabric : ModInitializer {
         ServerLivingEntityEvents.ALLOW_DAMAGE.register { entity, source, amount ->
             DefendMagicListener.call(entity, source, amount)
         }
-        logger.debug("服务器随机刻加载完成")
+        logger.debug("Server random-tick handler loaded")
     }
 
     private fun loadEntityAttributes() {
@@ -149,7 +149,7 @@ object UsefulMagicFabric : ModInitializer {
         UsefulMagicDataComponentTypes.types.forEach {
             Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, it.id, it.get())
         }
-        logger.debug("注册表输入成功")
+        logger.debug("Registry entries registered successfully")
     }
 
     private fun loadFuel() {

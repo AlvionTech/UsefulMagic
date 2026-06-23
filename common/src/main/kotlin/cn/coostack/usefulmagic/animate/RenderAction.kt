@@ -32,6 +32,8 @@ class RenderAction<T : RenderEntity>(val renderEntity: T) : AnimateAction(), Tic
         cancelMethod(renderEntity)
     }
 
+    override fun addPreTickActionPost(action: RenderAction<T>.() -> Unit): RenderAction<T> { return this }
+
     override fun addPreTickAction(action: RenderAction<T>.() -> Unit): RenderAction<T> {
         actions.add(action)
         return this

@@ -28,8 +28,8 @@ class FriendBoardItem : Item(
         tooltipFlag: TooltipFlag
     ) {
         super.appendHoverText(stack, context, tooltip, tooltipFlag)
-        tooltip.add(Component.literal("§7右键玩家可以将玩家信息添加到朋友列表"))
-        tooltip.add(Component.literal("§7按下§f${UsefulMagicClient.friendUIBinding.translatedKeyMessage.string}键§7可以打开添加的朋友UI"))
+        tooltip.add(Component.literal("§7Right-click a player to add them to your friend list"))
+        tooltip.add(Component.literal("§7Press §f${UsefulMagicClient.friendUIBinding.translatedKeyMessage.string}§7 to open the friend list UI"))
     }
 
     override fun interactLivingEntity(
@@ -45,7 +45,7 @@ class FriendBoardItem : Item(
             return super.interactLivingEntity(stack, user, entity, hand)
         }
         CooParticlesServices.CLIENT_NETWORK.send((PacketC2SFriendAddRequest(user.uuid, entity.uuid)))
-        user.sendSystemMessage(Component.literal("成功添加玩家: ${entity.name.string} 到好友列表"))
+        user.sendSystemMessage(Component.literal("Added player ${entity.name.string} to your friend list"))
 
         return super.interactLivingEntity(stack, user, entity, hand)
     }

@@ -10,29 +10,35 @@ import cn.coostack.usefulmagic.packet.s2c.PacketS2CFormationCreate
 object FormationPacketListener {
 
     fun handleCreate(payload: PacketS2CFormationCreate, context: ClientContext) {
-        val pos = payload.pos
-        val world = context.client().level ?: return
-        val entity = world.getBlockEntity(pos) ?: return
-        if (entity !is FormationCoreBlockEntity) return
-        entity.formation.tryBuildFormation()
+        context.client().execute {
+            val pos = payload.pos
+            val world = context.client().level ?: return@execute
+            val entity = world.getBlockEntity(pos) ?: return@execute
+            if (entity !is FormationCoreBlockEntity) return@execute
+            entity.formation.tryBuildFormation()
+        }
     }
 
     fun handleBreak(payload: PacketS2CFormationBreak, context: ClientContext) {
-        val pos = payload.formationPos
-        val world = context.client().level ?: return
-        val entity = world.getBlockEntity(pos) ?: return
-        if (entity !is FormationCoreBlockEntity) return
-        entity.formation.breakFormation(payload.damage, null)
+        context.client().execute {
+            val pos = payload.formationPos
+            val world = context.client().level ?: return@execute
+            val entity = world.getBlockEntity(pos) ?: return@execute
+            if (entity !is FormationCoreBlockEntity) return@execute
+            entity.formation.breakFormation(payload.damage, null)
+        }
     }
 
     fun handleEnergyChange(payload: PacketS2CEnergyCrystalChange, context: ClientContext) {
-        val crystal = payload.crystal
-        val world = context.client().level ?: return
-        val entity = world.getBlockEntity(crystal) ?: return
-        if (entity !is EnergyCrystalsBlockEntity) return
-        entity.currentMana = payload.mana
-        entity.maxMana = payload.maxMana
-        entity.setChanged()
+        context.client().execute {
+            val crystal = payload.crystal
+            val world = context.client().level ?: return@execute
+            val entity = world.getBlockEntity(crystal) ?: return@execute
+            if (entity !is EnergyCrystalsBlockEntity) return@execute
+            entity.currentMana = payload.mana
+            entity.maxMana = payload.maxMana
+            entity.setChanged()
+        }
     }
 
 }

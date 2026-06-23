@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.blocks.entity.formation
+package cn.coostack.usefulmagic.blocks.entity.formation
 
 import cn.coostack.cooparticlesapi.network.particle.emitters.ParticleEmittersManager
 import cn.coostack.cooparticlesapi.network.particle.style.ParticleStyleManager

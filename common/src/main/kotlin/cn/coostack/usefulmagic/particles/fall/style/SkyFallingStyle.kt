@@ -1,4 +1,5 @@
 package cn.coostack.usefulmagic.particles.fall.style
+import cn.coostack.cooparticlesapi.supports.TextureSheetsEnum
 
 import cn.coostack.cooparticlesapi.network.buffer.ParticleControlerDataBuffer
 import cn.coostack.cooparticlesapi.network.buffer.ParticleControlerDataBuffers

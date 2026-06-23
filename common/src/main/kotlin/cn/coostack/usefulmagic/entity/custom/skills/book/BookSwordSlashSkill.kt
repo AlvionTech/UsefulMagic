@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.entity.custom.skills.book
+package cn.coostack.usefulmagic.entity.custom.skills.book
 
 import cn.coostack.cooparticlesapi.CooParticlesAPI
 import cn.coostack.cooparticlesapi.extend.relativize

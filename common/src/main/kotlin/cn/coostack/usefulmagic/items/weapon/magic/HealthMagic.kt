@@ -68,7 +68,7 @@ class HealthMagic(properties: Properties) : ChargingMagic<HealthMagicComposition
                     targetPos = it.boxCenterPosition() - pos
                     maxTick = 1
                     templateData.apply {
-                        setTextureSheet(CooParticleTextureSheet.ADDITION_BLEND_TRANSLUCENT)
+                        setTextureSheet("ADDITION_BLEND_TRANSLUCENT")
                         color = Math3DUtil.colorOf(
                             191, 239, 192
                         )

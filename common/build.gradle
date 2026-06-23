@@ -31,6 +31,7 @@ dependencies {
     implementation "software.bernie.geckolib:geckolib-common-${minecraft_version}:${geckolib_version}"
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit5:2.2.0"
+    testImplementation "io.mockk:mockk:1.13.10"
 }
 
 sourceSets {

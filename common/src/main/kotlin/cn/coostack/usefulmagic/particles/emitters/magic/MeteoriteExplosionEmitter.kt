@@ -23,9 +23,9 @@ class MeteoriteExplosionEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters
     @CodecField
     var effectScale = 1.0
 
-    private var sp1 = buildSp1Queue()
-    private var sp2 = buildSp2Queue()
-    private var wave = buildWaveQueue()
+    @Transient private var sp1: ParticleCommandQueue? = null
+    @Transient private var sp2: ParticleCommandQueue? = null
+    @Transient private var wave: ParticleCommandQueue? = null
 
     override fun singleParticleAction(
         controler: ParticleControler,
@@ -64,13 +64,13 @@ class MeteoriteExplosionEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters
                 }
             }
             if (data.sign == 0) {
-                sp1.applyVelocity(data, this)
+                sp1?.applyVelocity(data, this)
             }
             if (data.sign == 1) {
-                sp2.applyVelocity(data, this)
+                sp2?.applyVelocity(data, this)
             }
             if (data.sign == 2) {
-                wave.applyVelocity(data, this)
+                wave?.applyVelocity(data, this)
             }
         }
     }
@@ -414,6 +414,7 @@ class MeteoriteExplosionEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters
     }
 
     override fun doTick() {
+        if (world?.isClientSide != true) return
         // modify emitter variables here
     }
 }

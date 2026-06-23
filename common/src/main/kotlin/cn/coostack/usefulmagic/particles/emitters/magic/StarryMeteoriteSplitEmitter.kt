@@ -16,23 +16,25 @@ import kotlin.random.Random
 
 @CooAutoRegister
 class StarryMeteoriteSplitEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos, world) {
-    val command1 = ParticleCommandQueue()
-        .add(
-            ParticleNoiseCommand()
-                .strength(0.6)
-                .frequency(0.15)
-                .speed(0.12)
-                .affectY(1.0)
-                .clampSpeed(12.0)
-                .useLifeCurve(true)
-        )
-        .add(
-            ParticleDragCommand()
-                .damping(0.1)
-                .minSpeed(0.05)
-                .linear(0.0)
-        )
-
+        val command1 by lazy {
+        ParticleCommandQueue()
+            .add(
+                ParticleNoiseCommand()
+                    .strength(0.6)
+                    .frequency(0.15)
+                    .speed(0.12)
+                    .affectY(1.0)
+                    .clampSpeed(12.0)
+                    .useLifeCurve(true)
+            )
+            .add(
+                ParticleDragCommand()
+                    .damping(0.1)
+                    .minSpeed(0.05)
+                    .linear(0.0)
+            )
+    
+    }
     override fun singleParticleAction(
         controler: ParticleControler,
         data: ControlableParticleData,
@@ -135,5 +137,6 @@ class StarryMeteoriteSplitEmitter(pos: Vec3, world: Level?) : AutoParticleEmitte
     var direction: Vec3 = Vec3(0.0, 1.0, 0.0)
 
     override fun doTick() {
+        if (world?.isClientSide != true) return
     }
 }

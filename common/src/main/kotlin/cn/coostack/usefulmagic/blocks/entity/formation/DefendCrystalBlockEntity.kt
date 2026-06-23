@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.blocks.entity.formation
+package cn.coostack.usefulmagic.blocks.entity.formation
 
 import cn.coostack.cooparticlesapi.CooParticlesAPI
 import cn.coostack.cooparticlesapi.barrages.BarrageHitResult

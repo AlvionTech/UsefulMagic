@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.particles.animation
+package cn.coostack.usefulmagic.particles.animation
 
 import cn.coostack.cooparticlesapi.network.particle.composition.ParticleComposition
 import cn.coostack.cooparticlesapi.network.particle.composition.manager.ParticleCompositionManager

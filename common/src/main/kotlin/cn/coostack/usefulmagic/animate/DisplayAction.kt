@@ -32,6 +32,8 @@ class DisplayAction<T : DisplayEntity>(val displayEntity: T) : AnimateAction(), 
         cancelMethod(displayEntity)
     }
 
+    override fun addPreTickActionPost(action: DisplayAction<T>.() -> Unit): DisplayAction<T> { return this }
+
     override fun addPreTickAction(action: DisplayAction<T>.() -> Unit): DisplayAction<T> {
         actions.add(action)
         return this

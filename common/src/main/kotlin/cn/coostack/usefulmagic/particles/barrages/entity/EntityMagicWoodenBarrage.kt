@@ -69,7 +69,7 @@ class EntityMagicWoodenBarrage(
     }
 
     override fun onHitDamaged(result: BarrageHitResult) {
-        emitter.cancelled = true
+        emitter.canceled = true
         if (!burn) {
             return
         }

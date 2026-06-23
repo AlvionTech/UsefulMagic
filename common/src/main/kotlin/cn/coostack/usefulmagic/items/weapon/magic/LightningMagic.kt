@@ -140,7 +140,7 @@ class LightningMagic(properties: Properties) : MagicItem(properties) {
             targetPos = dir
             maxTick = 1
             templateData.apply {
-                setTextureSheet(CooParticleTextureSheet.ADDITION_BLEND_TRANSLUCENT)
+                setTextureSheet("ADDITION_BLEND_TRANSLUCENT")
                 color = Math3DUtil.colorOf(
                     121, 211, 249
                 )

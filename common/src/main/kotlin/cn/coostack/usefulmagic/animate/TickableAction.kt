@@ -25,6 +25,8 @@ class TickableAction(val cancelPredicate: TickableAction.() -> Boolean) : Animat
         doneActions.forEach { it() }
     }
 
+    override fun addPreTickActionPost(action: TickableAction.() -> Unit): TickableAction { return this }
+
     override fun addPreTickAction(action: TickableAction.() -> Unit): TickableAction {
         actions.add(action)
         return this

@@ -44,10 +44,11 @@ class PurpleManaCrystal : Item(Properties()) {
                 SoundSource.PLAYERS,
                 3f, 2f
             )
+        
+            user.manaAbsorptionRate += 2
+            stack.count -= 1
         }
-        user.manaAbsorptionRate += 2
-        stack.count -= 1
-        return super.use(world, user, hand)
+        return InteractionResultHolder.sidedSuccess(user.getItemInHand(hand), world.isClientSide)
     }
 
 }

@@ -1,4 +1,5 @@
 package cn.coostack.usefulmagic.particles.emitters
+import cn.coostack.cooparticlesapi.supports.TextureSheetsEnum
 
 import cn.coostack.cooparticlesapi.annotations.CooAutoRegister
 import cn.coostack.cooparticlesapi.network.particle.emitters.ClassParticleEmitters
@@ -55,7 +56,7 @@ class FlyingRuneCloudEmitters(var player: UUID, pos: Vec3, world: Level?) : Clas
 
     override fun doTick() {
         val player = world?.getPlayerByUUID(player) ?: let {
-            cancelled = true
+            canceled = true
             return
         }
         this.pos = player.position()
@@ -98,7 +99,7 @@ class FlyingRuneCloudEmitters(var player: UUID, pos: Vec3, world: Level?) : Clas
                 random.nextInt(200, 255),
             )
         data.alpha = random.nextDouble(0.35, 0.85).toFloat()
-        data.setTextureSheet(ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT)
+        data.setTextureSheet(TextureSheetsEnum.PARTICLE_SHEET_TRANSLUCENT)
         controler.addPreTickAction {
             updatePhysics(this.loc, data, this)
             val r = (color.x * 255).toInt()

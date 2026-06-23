@@ -12,6 +12,7 @@ subprojects {
     apply plugin: 'kotlin'
 
     repositories {
+        mavenLocal()
         mavenCentral()
         maven {
             name = 'GeckoLib'

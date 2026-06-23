@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.particles.composition.explosion
+package cn.coostack.usefulmagic.particles.composition.explosion
 
 import cn.coostack.cooparticlesapi.annotations.CodecField
 import cn.coostack.cooparticlesapi.annotations.CooAutoRegister

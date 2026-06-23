@@ -89,6 +89,10 @@ class ExplosionMagic(properties: Properties) : ChargingMagic<ExplosionMagicBallC
         shooter.hasVec3Target = false
         shooter.vec3Target = Vec3.ZERO
 
+        val container = getOrCreateContainer(shooter)
+        val composition = container.get(ExplosionMagicComposition::class.java)
+        composition?.remove()
+        container.remove(ExplosionMagicComposition::class.java)
     }
 
 
@@ -234,8 +238,11 @@ class ExplosionMagic(properties: Properties) : ChargingMagic<ExplosionMagicBallC
                                 }
                                 addStartActions {
                                     ParticleCompositionManager.spawn(composition)
+                                    val status = cn.coostack.usefulmagic.systems.tick.ControlerStatus(composition) { true }
+                                    container.put(status)
                                 }.addDoneAction {
                                     composition.remove()
+                                    container.remove(composition)
                                 }
                             }), totalTime - 240
                     ).addNode(
@@ -264,8 +271,11 @@ class ExplosionMagic(properties: Properties) : ChargingMagic<ExplosionMagicBallC
         super.stopUse(shooter, world, wandStack, ballStack, chargingTick, max)
         // 停止 要去取消
         val container = getOrCreateContainer(shooter)
-        val animate = container.get<Animate>() ?: return
+        val animate = container.get(Animate::class.java) ?: return
         animate.cancel()
+        val composition = container.get(ExplosionMagicComposition::class.java)
+        composition?.remove()
+        container.remove(ExplosionMagicComposition::class.java)
         shooter.vec3Target = Vec3.ZERO
         shooter.hasVec3Target = false
     }

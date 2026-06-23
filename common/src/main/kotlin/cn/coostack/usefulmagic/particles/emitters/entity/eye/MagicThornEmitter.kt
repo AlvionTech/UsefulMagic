@@ -21,23 +21,25 @@ import kotlin.random.Random
 
 @CooAutoRegister
 class MagicThornEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos, world) {
-    val explode = ParticleCommandQueue()
-        .add(
-            ParticleNoiseCommand()
-                .strength(0.15)
-                .frequency(0.6)
-                .speed(0.12)
-                .affectY(1.0)
-                .clampSpeed(2.0)
-                .useLifeCurve(true)
-        )
-        .add(
-            ParticleDragCommand()
-                .damping(0.15)
-                .minSpeed(0.0)
-                .linear(0.0)
-        )
-
+        val explode by lazy {
+        ParticleCommandQueue()
+            .add(
+                ParticleNoiseCommand()
+                    .strength(0.15)
+                    .frequency(0.6)
+                    .speed(0.12)
+                    .affectY(1.0)
+                    .clampSpeed(2.0)
+                    .useLifeCurve(true)
+            )
+            .add(
+                ParticleDragCommand()
+                    .damping(0.15)
+                    .minSpeed(0.0)
+                    .linear(0.0)
+            )
+    
+    }
     override fun singleParticleAction(
         controler: ParticleControler,
         data: ControlableParticleData,
@@ -152,6 +154,7 @@ class MagicThornEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos, wo
     }
 
     override fun doTick() {
+        if (world?.isClientSide != true) return
         // modify emitter variables here
     }
 }

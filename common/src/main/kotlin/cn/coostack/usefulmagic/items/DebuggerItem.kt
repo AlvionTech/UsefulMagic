@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.items
+package cn.coostack.usefulmagic.items
 
 import cn.coostack.cooparticlesapi.CooParticlesAPI
 import cn.coostack.cooparticlesapi.barrages.BarrageManager

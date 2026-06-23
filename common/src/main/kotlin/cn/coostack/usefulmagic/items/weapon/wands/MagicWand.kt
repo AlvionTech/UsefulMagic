@@ -202,9 +202,9 @@ class MagicWand(properties: Properties) : Item(properties) {
         tooltipFlag: TooltipFlag
     ) {
         val wandLevel = stack.get(UsefulMagicDataComponentTypes.WAND_LEVEL.get()) ?: 1
-        val wandReduction = stack.get(UsefulMagicDataComponentTypes.WAND_REDUCTION.get()) ?: 1.0
+        val wandReduction = stack.get(UsefulMagicDataComponentTypes.WAND_REDUCTION.get()) ?: 0.0
         val wandSpeedFactor = stack.get(UsefulMagicDataComponentTypes.WAND_SPEED_FACTOR.get()) ?: 1.0
-        val prefer = stack.get(UsefulMagicDataComponentTypes.WAND_PREFER.get()) ?: return
+        val prefer = stack.get(UsefulMagicDataComponentTypes.WAND_PREFER.get()) ?: cn.coostack.usefulmagic.beans.PreferMagicData(0.0, 0.0, 0.0, 0.0)
         // 获取法球类型
         val magicBall = stack.get(UsefulMagicDataComponentTypes.WAND_MAGIC.get()) ?: ItemStack.EMPTY
 
@@ -213,7 +213,7 @@ class MagicWand(properties: Properties) : Item(properties) {
         val preferDamageAddition = (prefer.getDamageFactor(magicBall)) * 100
         val preferCDReduction = (-prefer.getCdReductionFactor(magicBall)) * 100
         val preferUsageReduction = (-prefer.getUsageFactor(magicBall)) * 100
-        val preferManaReduction = (-prefer.getUsageFactor(magicBall)) * 100
+        val preferManaReduction = (-prefer.getManaReductionFactor(magicBall)) * 100
         val colorSign = if (preferLevel > 0) "§a" else if (preferLevel < 0) "§c" else "§7"
         fun numSign(x: Double): String = if (x > 0) "+" else ""
         fun additionComponent(addition: Double, level: Int) = if (level == 0) Component.literal("") else {
@@ -244,7 +244,7 @@ class MagicWand(properties: Properties) : Item(properties) {
         tooltipComponents.add(
             Component.translatable(
                 "item.usefulmagic.wand.charging_time",
-                Component.literal("${"%.2f".format(MagicHelper.getMaxChargingTick(stack) / 20.0)}秒"),
+                Component.literal("${"%.2f".format(MagicHelper.getMaxChargingTick(stack) / 20.0)}s"),
                 additionComponent(preferUsageReduction, preferLevel)
 
             )
@@ -252,7 +252,7 @@ class MagicWand(properties: Properties) : Item(properties) {
         tooltipComponents.add(
             Component.translatable(
                 "item.usefulmagic.wand.cd",
-                Component.literal("${"%.2f".format(MagicHelper.getFinalCD(stack) / 20.0)}秒"),
+                Component.literal("${"%.2f".format(MagicHelper.getFinalCD(stack) / 20.0)}s"),
                 additionComponent(preferCDReduction, preferLevel)
             )
         )
@@ -307,7 +307,7 @@ class MagicWand(properties: Properties) : Item(properties) {
             }
             // 这里要扣除魔力值
             if (shooter is Player && !shooter.hasInfiniteMaterials()) {
-                shooter.mana -= MagicHelper.getManaCost(stack)
+                shooter.mana = (shooter.mana - MagicHelper.getManaCost(stack)).coerceAtLeast(0)
             }
         } else {
             item.usingTick(shooter, stack, magicBall, world, chargingTick)
@@ -328,7 +328,7 @@ class MagicWand(properties: Properties) : Item(properties) {
         if (!MagicHelper.isLevelEnough(stack, magicBall)) {
             return
         }
-        val item = magicBall.item as MagicItem
+        val item = magicBall.item as? MagicItem ?: return
         item.stopUse(shooter, world, stack, magicBall, chargingTick, max)
     }
 
@@ -340,7 +340,7 @@ class MagicWand(properties: Properties) : Item(properties) {
         if (!MagicHelper.isLevelEnough(stack, magicBall)) {
             return
         }
-        val item = magicBall.item as MagicItem
+        val item = magicBall.item as? MagicItem ?: return
         item.startUse(shooter, world, stack, magicBall)
     }
 

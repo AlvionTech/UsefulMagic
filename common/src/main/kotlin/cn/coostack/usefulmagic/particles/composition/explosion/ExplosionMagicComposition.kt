@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.particles.composition.explosion
+package cn.coostack.usefulmagic.particles.composition.explosion
 
 import cn.coostack.cooparticlesapi.network.particle.composition.ParticleShapeComposition
 import cn.coostack.cooparticlesapi.network.particle.composition.AutoSequencedParticleComposition

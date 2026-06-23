@@ -1,4 +1,5 @@
 package cn.coostack.usefulmagic.particles.composition.entity
+import cn.coostack.cooparticlesapi.supports.TextureSheetsEnum
 
 import cn.coostack.cooparticlesapi.annotations.CodecField
 import cn.coostack.cooparticlesapi.annotations.CooAutoRegister

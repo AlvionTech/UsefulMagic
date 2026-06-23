@@ -80,7 +80,7 @@ class IllegalFlyingGoal(val entity: MagicBookEntity) : Goal() {
             target.deltaMovement = Vec3(0.0, -1.0, 0.0)
             target.hurtMarked = true
             target.sendSystemMessage(
-                Component.literal("[${entity.displayName?.string}]: §c此地禁空!")
+                Component.literal("[${entity.displayName?.string}]: §cFlight is forbidden here!")
             )
             time = 0
         }

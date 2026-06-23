@@ -27,27 +27,29 @@ class BarrageTailEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos, w
         enableInterpolator = true
     }
 
-    val command = ParticleCommandQueue()
-        .add(
-            ParticleNoiseCommand()
-                .strength(0.025)
-                .frequency(1.3)
-                .speed(2.0)
-                .affectY(1.0)
-                .clampSpeed(15.0)
-                .useLifeCurve(true)
-        ) { data, particle ->
-            (run {
-                val age = particle.currentAge;
-                val maxAge = particle.lifetime; ((age > 10))
-            })
-        }
-        .add(
-            ParticleDragCommand()
-                .damping(0.15)
-                .linear(0.0)
-                .minSpeed(0.01)
-        )
+    val command by lazy {
+        ParticleCommandQueue()
+            .add(
+                ParticleNoiseCommand()
+                    .strength(0.025)
+                    .frequency(1.3)
+                    .speed(2.0)
+                    .affectY(1.0)
+                    .clampSpeed(15.0)
+                    .useLifeCurve(true)
+            ) { data, particle ->
+                (run {
+                    val age = particle.currentAge;
+                    val maxAge = particle.lifetime; ((age > 10))
+                })
+            }
+            .add(
+                ParticleDragCommand()
+                    .damping(0.15)
+                    .linear(0.0)
+                    .minSpeed(0.01)
+            )
+    }
 
     @CodecField
     var template = ControlableParticleData().apply {
@@ -118,6 +120,7 @@ class BarrageTailEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos, w
     }
 
     override fun doTick() {
+        if (world?.isClientSide != true) return
         // 朝着dir移动？ x
     }
 

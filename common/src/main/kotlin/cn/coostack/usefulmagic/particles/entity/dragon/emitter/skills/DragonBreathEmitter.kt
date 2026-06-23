@@ -24,23 +24,25 @@ import kotlin.random.nextInt
 
 @CooAutoRegister
 class DragonBreathEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos, world) {
-    val command1 = ParticleCommandQueue()
-        .add(
-            ParticleNoiseCommand()
-                .strength(0.04)
-                .frequency(0.3)
-                .speed(0.2)
-                .affectY(1.0)
-                .clampSpeed(16.0)
-                .useLifeCurve(true)
-        )
-        .add(
-            ParticleDragCommand()
-                .damping(0.06)
-                .minSpeed(0.0)
-                .linear(0.0)
-        )
-
+        val command1 by lazy {
+        ParticleCommandQueue()
+            .add(
+                ParticleNoiseCommand()
+                    .strength(0.04)
+                    .frequency(0.3)
+                    .speed(0.2)
+                    .affectY(1.0)
+                    .clampSpeed(16.0)
+                    .useLifeCurve(true)
+            )
+            .add(
+                ParticleDragCommand()
+                    .damping(0.06)
+                    .minSpeed(0.0)
+                    .linear(0.0)
+            )
+    
+    }
     override fun singleParticleAction(
         controler: ParticleControler,
         data: ControlableParticleData,
@@ -149,5 +151,6 @@ class DragonBreathEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos, 
     }
 
     override fun doTick() {
+        if (world?.isClientSide != true) return
     }
 }

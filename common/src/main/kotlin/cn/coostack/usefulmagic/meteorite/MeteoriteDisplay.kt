@@ -2,7 +2,7 @@ package cn.coostack.usefulmagic.meteorite
 
 import cn.coostack.cooparticlesapi.annotations.CodecField
 import cn.coostack.cooparticlesapi.annotations.CooAutoRegister
-import cn.coostack.cooparticlesapi.annotations.display.handle.DisplayEntityHelper
+import cn.coostack.cooparticlesapi.annotations.display.handle.DisplayEntityRegistryHelper
 import cn.coostack.cooparticlesapi.display.DisplayEntity
 import cn.coostack.cooparticlesapi.extend.unaryMinus
 import cn.coostack.cooparticlesapi.utils.MinecraftRendererUtil
@@ -63,6 +63,6 @@ class MeteoriteDisplay(pos: Vec3, world: Level?) : DisplayEntity(pos, world) {
     }
 
     override fun getCodec(): StreamCodec<FriendlyByteBuf, DisplayEntity> {
-        return DisplayEntityHelper.generateCodec(this)
+        return DisplayEntityRegistryHelper.generateCodec(this)
     }
 }

@@ -119,7 +119,7 @@ class DragonBreathSkill : DragonSkill() {
 
     override fun stopHolding(entity: MagicDragonEntity, holdTicks: Int) {
         // RESET （不用修改PHASE)
-        breathEmitter?.cancelled = true
+        breathEmitter?.canceled = true
         breathEmitter = null
     }
 

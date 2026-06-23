@@ -41,7 +41,7 @@ object PhaseRegistries {
     @JvmStatic
     @Suppress("UNCHECKED_CAST")
     fun <T : LivingEntity> buildOrThrow(id: String): PhaseDefinition<T> {
-        return registryMap[id]?.get() as? PhaseDefinition<T> ?: throw IllegalArgumentException("未注册的ID$id")
+        return registryMap[id]?.get() as? PhaseDefinition<T> ?: throw IllegalArgumentException("Unregistered ID: $id")
     }
 
 

@@ -92,15 +92,26 @@ class LargeManaRevive(settings: Properties) : Item(settings) {
             newStack.set(LARGE_REVIVE_USE_COUNT.get(), MAX_USAGE)
         }
         val drop = if (usage == 1) ItemStack(UsefulMagicItems.LARGE_MANA_BOTTLE.getItem()) else newStack
+        
+        val remainingStack = stack.copy()
+        if (!user.isCreative) {
+            remainingStack.shrink(1)
+        }
+
         if (drop.isEmpty) {
+            return remainingStack
+        }
+        
+        if (remainingStack.isEmpty) {
             return drop
         }
+
         if (!user.isCreative) {
             if (!user.inventory.add(drop)) {
                 user.drop(drop, false)
             }
         }
-        return stack
+        return remainingStack
     }
 
     override fun getUseDuration(stack: ItemStack, entity: LivingEntity): Int {

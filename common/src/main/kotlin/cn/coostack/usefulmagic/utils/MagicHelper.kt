@@ -33,7 +33,7 @@ object MagicHelper {
      * @return 0 不存在法珠 -1 出现了错误 或者等级不够
      */
     fun getMaxChargingTick(wand: ItemStack): Int {
-        val factor = wand.get(UsefulMagicDataComponentTypes.WAND_SPEED_FACTOR.get()) ?: return -1
+        val factor = wand.get(UsefulMagicDataComponentTypes.WAND_SPEED_FACTOR.get()) ?: 1.0
         val magicBall = wand.get(UsefulMagicDataComponentTypes.WAND_MAGIC.get()) ?: return 0
         if (!isLevelEnough(wand, magicBall)) {
             return 0
@@ -41,7 +41,7 @@ object MagicHelper {
         val baseTime = magicBall.get(UsefulMagicDataComponentTypes.MAGIC_BASE_USAGE.get()) ?: return -1
         val minUsage = magicBall.get(UsefulMagicDataComponentTypes.MAGIC_MIN_USAGE.get()) ?: 1
         val wandAddition = (baseTime * factor)
-        val prefer = wand.get(UsefulMagicDataComponentTypes.WAND_PREFER.get()) ?: return -1
+        val prefer = wand.get(UsefulMagicDataComponentTypes.WAND_PREFER.get()) ?: cn.coostack.usefulmagic.beans.PreferMagicData(0.0, 0.0, 0.0, 0.0)
         val usageReduction = prefer.getUsageFactor(magicBall)
         val finalTime = ((1 - usageReduction) * wandAddition).roundToInt().coerceAtLeast(minUsage)
         return finalTime
@@ -50,8 +50,8 @@ object MagicHelper {
     fun getManaCost(wand: ItemStack): Int {
         val ball = wand.get(UsefulMagicDataComponentTypes.WAND_MAGIC.get()) ?: return 0
         val base = ball.get(UsefulMagicDataComponentTypes.MAGIC_BASE_MANA_COST.get()) ?: return 0
-        val effect = wand.get(UsefulMagicDataComponentTypes.WAND_REDUCTION.get()) ?: return 0
-        val prefer = wand.get(UsefulMagicDataComponentTypes.WAND_PREFER.get()) ?: return 0
+        val effect = wand.get(UsefulMagicDataComponentTypes.WAND_REDUCTION.get()) ?: 0.0
+        val prefer = wand.get(UsefulMagicDataComponentTypes.WAND_PREFER.get()) ?: cn.coostack.usefulmagic.beans.PreferMagicData(0.0, 0.0, 0.0, 0.0)
         val wandReduction = prefer.getManaReductionFactor(ball)
         val wandAddition = (base * (1 - effect))
         val final = ((1 - wandReduction) * wandAddition).coerceAtLeast(0.0).roundToInt()
@@ -61,9 +61,9 @@ object MagicHelper {
     fun getFinalCD(wand: ItemStack): Int {
         val ball = wand.get(UsefulMagicDataComponentTypes.WAND_MAGIC.get()) ?: return 0
         val base = ball.get(UsefulMagicDataComponentTypes.MAGIC_RELEASE_CD.get()) ?: return 0
-        val effect = wand.get(UsefulMagicDataComponentTypes.WAND_SPEED_FACTOR.get()) ?: return 0
+        val effect = wand.get(UsefulMagicDataComponentTypes.WAND_SPEED_FACTOR.get()) ?: 1.0
         val wandAddition = effect * base
-        val prefer = wand.get(UsefulMagicDataComponentTypes.WAND_PREFER.get()) ?: return 0
+        val prefer = wand.get(UsefulMagicDataComponentTypes.WAND_PREFER.get()) ?: cn.coostack.usefulmagic.beans.PreferMagicData(0.0, 0.0, 0.0, 0.0)
         val wandReduction = prefer.getCdReductionFactor(ball)
         val final = ((1 - wandReduction) * wandAddition).roundToInt().coerceAtLeast(0)
         return final

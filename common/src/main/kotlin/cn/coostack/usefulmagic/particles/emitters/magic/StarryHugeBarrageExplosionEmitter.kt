@@ -20,56 +20,60 @@ import kotlin.random.Random
 
 @CooAutoRegister
 class StarryHugeBarrageExplosionEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos, world) {
-    val cloud = ParticleCommandQueue()
-        .add(
-            ParticleToroidalCirculationCommand()
-                .center{this.pos.add(0.0,15.0,0.0)}
-                .axis(Vec3(0.0, 1.0, 0.0))
-                .ringRadius(10.0)
-                .radialThickness(8.0)
-                .axialThickness(4.0)
-                .circulationStrength(-3.0)
-                .outwardStrength(2.0)
-                .upwardStrength(0.5)
-                .followStrength(1.5)
-                .maxStep(2.0)
-                .useLifeCurve(true)
-        )
-        .add(
-            ParticleNoiseCommand()
-                .strength(0.4)
-                .frequency(3.0)
-                .speed(5.0)
-                .affectY(1.0)
-                .clampSpeed(15.0)
-                .useLifeCurve(true)
-        )
-        .add(
-            ParticleDragCommand()
-                .damping(0.15)
-                .minSpeed(0.0)
-                .linear(0.0)
-        ) { data, particle ->
-            (run { val age = particle.currentAge; val maxAge = particle.lifetime; ((age >= 10)) })
+        val cloud by lazy {
+        ParticleCommandQueue()
+            .add(
+                ParticleToroidalCirculationCommand()
+                    .center{this.pos.add(0.0,15.0,0.0)}
+                    .axis(Vec3(0.0, 1.0, 0.0))
+                    .ringRadius(10.0)
+                    .radialThickness(8.0)
+                    .axialThickness(4.0)
+                    .circulationStrength(-3.0)
+                    .outwardStrength(2.0)
+                    .upwardStrength(0.5)
+                    .followStrength(1.5)
+                    .maxStep(2.0)
+                    .useLifeCurve(true)
+            )
+            .add(
+                ParticleNoiseCommand()
+                    .strength(0.4)
+                    .frequency(3.0)
+                    .speed(5.0)
+                    .affectY(1.0)
+                    .clampSpeed(15.0)
+                    .useLifeCurve(true)
+            )
+            .add(
+                ParticleDragCommand()
+                    .damping(0.15)
+                    .minSpeed(0.0)
+                    .linear(0.0)
+            ) { data, particle ->
+                (run { val age = particle.currentAge; val maxAge = particle.lifetime; ((age >= 10)) })
+    }
         }
 
-    val wave = ParticleCommandQueue()
-        .add(
-            ParticleNoiseCommand()
-                .strength(0.03)
-                .frequency(0.15)
-                .speed(0.12)
-                .affectY(1.0)
-                .clampSpeed(0.8)
-                .useLifeCurve(true)
-        )
-        .add(
-            ParticleDragCommand()
-                .damping(0.05)
-                .minSpeed(0.0)
-                .linear(0.0)
-        ) { data, particle ->
-            (run { val age = particle.currentAge; val maxAge = particle.lifetime; ((age >= 10)) })
+        val wave by lazy {
+        ParticleCommandQueue()
+            .add(
+                ParticleNoiseCommand()
+                    .strength(0.03)
+                    .frequency(0.15)
+                    .speed(0.12)
+                    .affectY(1.0)
+                    .clampSpeed(0.8)
+                    .useLifeCurve(true)
+            )
+            .add(
+                ParticleDragCommand()
+                    .damping(0.05)
+                    .minSpeed(0.0)
+                    .linear(0.0)
+            ) { data, particle ->
+                (run { val age = particle.currentAge; val maxAge = particle.lifetime; ((age >= 10)) })
+    }
         }
 
     override fun singleParticleAction(
@@ -232,6 +236,7 @@ class StarryHugeBarrageExplosionEmitter(pos: Vec3, world: Level?) : AutoParticle
     }
 
     override fun doTick() {
+        if (world?.isClientSide != true) return
         // modify emitter variables here
     }
 }

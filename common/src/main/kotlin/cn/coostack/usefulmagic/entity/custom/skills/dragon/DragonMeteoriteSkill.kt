@@ -256,7 +256,7 @@ class DragonMeteoriteSkill : DragonSkill() {
         mainBarrage.addHitOnServer {
             val fallDir = if (direction.lengthSqr() <= 1e-6) dir else direction.normalize()
             val explosionCenter = loc.add(fallDir.scale(mainBarrage.targetSize.targetNum.toDouble() * 1.25))
-            tailEmitter.cancelled = true
+            tailEmitter.canceled = true
             stopFarFlySound(loc)
             playMeteorImpactSound(world, loc)
             explosion(source)
@@ -305,7 +305,7 @@ class DragonMeteoriteSkill : DragonSkill() {
     }
 
     private fun cancelMainTailEmitter() {
-        mainTailEmitter?.cancelled = true
+        mainTailEmitter?.canceled = true
         mainTailEmitter = null
     }
 

@@ -30,7 +30,9 @@ object UsefulMagicEntityTypes {
     }
 
     val FORMATION_CORE_ENTITY: CommonDeferredEntityType<FormationCoreEntity> = register("formation_core_entity") {
-        EntityType.Builder.of(::FormationCoreEntity, MobCategory.CREATURE)
+        // Plain (non-living) marker entity: use MISC so it is not subject to
+        // living-entity attribute validation or natural mob-spawn/cap logic.
+        EntityType.Builder.of(::FormationCoreEntity, MobCategory.MISC)
             .sized(4f, 2f).build("formation_core_entity")
     }
 

@@ -2,7 +2,7 @@ package cn.coostack.usefulmagic.renderer
 
 import cn.coostack.cooparticlesapi.annotations.CodecField
 import cn.coostack.cooparticlesapi.annotations.CooAutoRegister
-import cn.coostack.cooparticlesapi.annotations.renderer.handle.RenderEntityHelper
+import cn.coostack.cooparticlesapi.annotations.renderer.handle.RenderEntityRegistryHelper
 import cn.coostack.cooparticlesapi.renderer.AutoRenderEntity
 import cn.coostack.cooparticlesapi.renderer.RenderEntity
 import cn.coostack.cooparticlesapi.renderer.client.RenderUtil
@@ -467,7 +467,7 @@ class DefendCrystalRenderEntity(
 
         @JvmField
         val CODEC: StreamCodec<FriendlyByteBuf, RenderEntity> =
-            RenderEntityHelper.generateCodec(DefendCrystalRenderEntity())
+            RenderEntityRegistryHelper.generateCodec(DefendCrystalRenderEntity())
 
         @JvmField
         val codec: StreamCodec<FriendlyByteBuf, RenderEntity> = CODEC

@@ -139,7 +139,7 @@ class BookCannonballsSkill(val damage: Float) : Skill<MagicBookEntity>, SkillCon
         val vd = direction.scale(0.15)
         target.deltaMovement = Vec3(vd.x, abs(vd.y) * 0.5 + 0.05, vd.z)
         target.hurtMarked = true
-        holdingEmitters?.cancelled = true
+        holdingEmitters?.canceled = true
         holdingEmitters = null
     }
 
@@ -175,7 +175,7 @@ class BookCannonballsSkill(val damage: Float) : Skill<MagicBookEntity>, SkillCon
     }
 
     override fun stopHolding(entity: MagicBookEntity, holdTicks: Int) {
-        holdingEmitters?.cancelled = true
+        holdingEmitters?.canceled = true
         holdingEmitters = null
         entity.level().playSound(
             null, entity.x, entity.y, entity.z, SoundEvents.GENERIC_EXPLODE, SoundSource.HOSTILE, 5f, 2f

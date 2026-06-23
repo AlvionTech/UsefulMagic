@@ -111,7 +111,7 @@ class GiantSwordLightBarrageMagic(
 //            randomCountMin = 100 * countDouble
 //            randomCountMax = 200 * countDouble
 //        }
-//        tailEffect.cancelled = true
+//        tailEffect.canceled = true
 //        ParticleEmittersManager.spawnEmitters(explosion)
     }
 

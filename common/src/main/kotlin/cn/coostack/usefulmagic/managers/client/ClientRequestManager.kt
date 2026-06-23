@@ -23,7 +23,7 @@ object ClientRequestManager {
     /**
      * 多个相同目标的请求会被覆盖
      */
-    val requests = HashMap<CustomPacketPayload.Type<*>, RequestRecall>()
+    val requests = java.util.concurrent.ConcurrentHashMap<CustomPacketPayload.Type<*>, RequestRecall>()
 
     fun sendRequest(packet: CustomPacketPayload, receiverType: CustomPacketPayload.Type<*>): RequestRecall {
         val recall = RequestRecall(packet)
@@ -34,6 +34,8 @@ object ClientRequestManager {
 
     fun setResponse(packet: CustomPacketPayload) {
         val recall = requests.remove(packet.type()) ?: return
-        recall.done(packet)
+        net.minecraft.client.Minecraft.getInstance().execute {
+            recall.done(packet)
+        }
     }
 }

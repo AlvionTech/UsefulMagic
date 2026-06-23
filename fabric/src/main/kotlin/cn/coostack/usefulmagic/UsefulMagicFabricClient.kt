@@ -123,7 +123,7 @@ object UsefulMagicFabricClient : ClientModInitializer {
         BlockEntityRenderers.register(UsefulMagicBlockEntities.SWORD_ATTACK_CRYSTAL.get()) { CrystalEntityRenderer() }
         BlockEntityRenderers.register(UsefulMagicBlockEntities.RECOVER_CRYSTAL.get()) { CrystalEntityRenderer() }
         BlockEntityRenderers.register(UsefulMagicBlockEntities.ENERGY_CRYSTAL.get()) { CrystalEntityRenderer() }
-        UsefulMagic.logger.debug("客户端方块渲染初始化完成")
+        UsefulMagic.logger.debug("Client block rendering initialized")
     }
 
     private fun handleBlockLayer() {
@@ -169,7 +169,7 @@ object UsefulMagicFabricClient : ClientModInitializer {
         ) { packet, ctx ->
             TrackerToggleListener.receive(packet, FabricClientContext(ctx))
         }
-        UsefulMagic.logger.debug("客户端自定义数据包处理器注册完成")
+        UsefulMagic.logger.debug("Client custom packet handlers registered")
     }
 
     private fun handleModelPredicate() {
@@ -181,7 +181,7 @@ object UsefulMagicFabricClient : ClientModInitializer {
                 1f - (count.toFloat() / LargeManaRevive.MAX_USAGE)
             }
         )
-        UsefulMagic.logger.debug("模型谓词注册完成")
+        UsefulMagic.logger.debug("Model predicates registered")
     }
 
     private fun handleTooltipComponent() {

@@ -41,7 +41,7 @@ object UsefulMagic {
     lateinit var state: ManaServerState
     fun init() {
         PhaseRegistries.init()
-        logger.info("正在加载 UsefulMagic")
+        logger.info("Loading UsefulMagic")
         loadRegistries()
         loadStyles()
         PhaseRegistries.init()

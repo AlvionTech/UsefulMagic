@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.particles.barrages
+package cn.coostack.usefulmagic.particles.barrages
 
 import cn.coostack.cooparticlesapi.api.controler.server.ServerControler
 import cn.coostack.cooparticlesapi.barrages.BarrageHitResult

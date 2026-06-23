@@ -78,7 +78,7 @@ object MeteoriteState {
                             radius = entityDamageRadius,
                             fullDamageRadius = context.targetSize.toDouble()
                         )
-                        context.tailEmitter.cancelled = true
+                        context.tailEmitter.canceled = true
                         ServerCameraUtil.sendShake(context.world, loc, 256.0, 5.0, 20, 240.0, false)
                         context.world.players().filter {
                             it.position().distanceTo(loc) <= 256.0

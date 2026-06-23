@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.skill.player
+package cn.coostack.usefulmagic.skill.player
 
 import cn.coostack.cooparticlesapi.CooParticlesAPI
 import cn.coostack.cooparticlesapi.barrages.BarrageManager

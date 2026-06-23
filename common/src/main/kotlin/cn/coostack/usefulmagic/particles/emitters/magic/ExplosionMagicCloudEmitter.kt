@@ -19,31 +19,33 @@ import kotlin.random.Random
 class ExplosionMagicCloudEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos, world) {
     @CodecField
     var r = 10.0
-    val command1 = ParticleCommandQueue()
-        .add(
-            ParticleNoiseCommand()
-                .strength(0.03)
-                .frequency(0.15)
-                .speed(0.12)
-                .affectY(1.0)
-                .clampSpeed(4.0)
-                .useLifeCurve(true)
-        )
-        .add(
-            ParticleToroidalCirculationCommand()
-                .center { this.pos.add(0.0, 15.0, 0.0) }
-                .axis(Vec3(0.0, 1.0, 0.0))
-                .ringRadius(r)
-                .radialThickness(13.0)
-                .axialThickness(8.0)
-                .circulationStrength(-1.0)
-                .outwardStrength(2.0)
-                .upwardStrength(1.0)
-                .followStrength(1.5)
-                .maxStep(1.5)
-                .useLifeCurve(true)
-        )
-
+        val command1 by lazy {
+        ParticleCommandQueue()
+            .add(
+                ParticleNoiseCommand()
+                    .strength(0.03)
+                    .frequency(0.15)
+                    .speed(0.12)
+                    .affectY(1.0)
+                    .clampSpeed(4.0)
+                    .useLifeCurve(true)
+            )
+            .add(
+                ParticleToroidalCirculationCommand()
+                    .center { this.pos.add(0.0, 15.0, 0.0) }
+                    .axis(Vec3(0.0, 1.0, 0.0))
+                    .ringRadius(r)
+                    .radialThickness(13.0)
+                    .axialThickness(8.0)
+                    .circulationStrength(-1.0)
+                    .outwardStrength(2.0)
+                    .upwardStrength(1.0)
+                    .followStrength(1.5)
+                    .maxStep(1.5)
+                    .useLifeCurve(true)
+            )
+    
+    }
     override fun singleParticleAction(
         controler: ParticleControler,
         data: ControlableParticleData,
@@ -145,6 +147,7 @@ class ExplosionMagicCloudEmitter(pos: Vec3, world: Level?) : AutoParticleEmitter
     }
 
     override fun doTick() {
+        if (world?.isClientSide != true) return
         if (tick < 70 && tick % 2 == 0) {
             pos += Vec3(0.0, 2.0, 0.0)
         }

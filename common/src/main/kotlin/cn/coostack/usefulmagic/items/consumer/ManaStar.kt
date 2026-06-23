@@ -42,10 +42,11 @@ class ManaStar : Item(Properties()) {
                 SoundSource.PLAYERS,
                 3f, 2f
             )
+        
+            user.maxMana += 20
+            stack.count -= 1
         }
-        user.maxMana += 20
-        stack.count -= 1
-        return super.use(world, user, hand)
+        return InteractionResultHolder.sidedSuccess(user.getItemInHand(hand), world.isClientSide)
     }
 
 }

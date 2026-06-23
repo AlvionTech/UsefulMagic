@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.items.prop
+package cn.coostack.usefulmagic.items.prop
 
 import cn.coostack.cooparticlesapi.CooParticlesAPI
 import cn.coostack.cooparticlesapi.extend.ofFloored
@@ -125,11 +125,11 @@ class SkyFallingRuneItem : Item(Properties().stacksTo(16).rarity(Rarity.EPIC)) {
         tooltip: MutableList<Component>,
         tooltipFlag: TooltipFlag
     ) {
-        tooltip.add(Component.literal("花费巨大的代价，迅速击溃敌人"))
-        tooltip.add(Component.literal("超位魔法-天空坠落"))
-        tooltip.add(Component.literal("右键使用"))
-        tooltip.add(Component.literal("消耗品"))
-        tooltip.add(Component.literal("不消耗魔力值"))
+        tooltip.add(Component.literal("At great cost, swiftly crush your enemies"))
+        tooltip.add(Component.literal("Transcendent Magic - Sky Fall"))
+        tooltip.add(Component.literal("Right-click to use"))
+        tooltip.add(Component.literal("Consumable"))
+        tooltip.add(Component.literal("Does not consume mana"))
         super.appendHoverText(stack, context, tooltip, tooltipFlag)
     }
 

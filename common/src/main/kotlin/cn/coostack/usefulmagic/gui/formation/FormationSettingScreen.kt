@@ -56,7 +56,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
         val originX = width / 2
         addRenderableOnly(
             RealmsLabel(
-                Component.literal("阵法设置"),
+                Component.literal("Formation Settings"),
 //                originX - (64 * scaled).toInt(),
                 originX,
                 (alignCenterOffset * scaled).toInt(),
@@ -67,7 +67,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
             genToggleButton(
                 { settings.hostileEntityAttack = it },
                 { settings.hostileEntityAttack },
-                Component.literal(if (settings.hostileEntityAttack) "§a开启" else "§c关闭")
+                Component.literal(if (settings.hostileEntityAttack) "§aEnabled" else "§cDisabled")
             ).bounds(
                 originX + (64 * scaled).toInt(),
                 (38 * scaled).toInt(),
@@ -76,7 +76,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
                 Tooltip.create(
                     Component.literal(
                         """
-                            开启此选项时, 阵法会隔绝所有敌对生物
+                            When enabled, the formation blocks all hostile mobs
                         """.trimIndent()
                     )
                 )
@@ -86,7 +86,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
 
         addRenderableOnly(
             RealmsLabel(
-                Component.literal("阵法攻击敌对生物"),
+                Component.literal("Attack Hostile Mobs"),
 //                originX - (128 * scaled).toInt(),
                 originX - (64 * scaled).toInt(),
                 ((30 + alignCenterOffset) * scaled).toInt(),
@@ -100,7 +100,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
             genToggleButton(
                 { settings.playerEntityAttack = it },
                 { settings.playerEntityAttack },
-                Component.literal(if (settings.playerEntityAttack) "§a开启" else "§c关闭")
+                Component.literal(if (settings.playerEntityAttack) "§aEnabled" else "§cDisabled")
             ).bounds(
                 originX + (64 * scaled).toInt(),
 //                originX,
@@ -110,7 +110,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
                 Tooltip.create(
                     Component.literal(
                         """
-                            开启此选项时, 阵法会攻击所有非朋友玩家
+                            When enabled, the formation attacks all non-friend players
                         """.trimIndent()
                     )
                 )
@@ -120,7 +120,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
 
         addRenderableOnly(
             RealmsLabel(
-                Component.literal("阵法攻击玩家"),
+                Component.literal("Attack Players"),
 //                originX - (128 * scaled).toInt(),
                 originX - (64 * scaled).toInt(),
                 ((54 + alignCenterOffset) * scaled).toInt(),
@@ -134,7 +134,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
             genToggleButton(
                 { settings.animalEntityAttack = it },
                 { settings.animalEntityAttack },
-                Component.literal(if (settings.animalEntityAttack) "§a开启" else "§c关闭")
+                Component.literal(if (settings.animalEntityAttack) "§aEnabled" else "§cDisabled")
             ).bounds(
                 originX + (64 * scaled).toInt(),
 //                originX,
@@ -144,7 +144,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
                 Tooltip.create(
                     Component.literal(
                         """
-                            开启此选项时, 阵法会隔绝所有动物实体
+                            When enabled, the formation blocks all animal entities
                         """.trimIndent()
                     )
                 )
@@ -154,7 +154,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
 
         addRenderableOnly(
             RealmsLabel(
-                Component.literal("阵法攻击动物"),
+                Component.literal("Attack Animals"),
                 originX - (64 * scaled).toInt(),
                 ((76 + alignCenterOffset) * scaled).toInt(),
                 0xFFFFFFFFU.toInt()
@@ -166,7 +166,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
             genToggleButton(
                 { settings.anotherEntityAttack = it },
                 { settings.anotherEntityAttack },
-                Component.literal(if (settings.anotherEntityAttack) "§a开启" else "§c关闭")
+                Component.literal(if (settings.anotherEntityAttack) "§aEnabled" else "§cDisabled")
             ).bounds(
                 originX + (64 * scaled).toInt(),
                 ((104) * scaled).toInt(),
@@ -175,7 +175,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
                 Tooltip.create(
                     Component.literal(
                         """
-                            开启此选项时, 如果阵法没有识别出实体的类型具体(前三项),则会攻击
+                            When enabled, the formation attacks entities whose type it cannot identify (the three categories above)
                         """.trimIndent()
                     )
                 )
@@ -185,7 +185,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
 
         addRenderableOnly(
             RealmsLabel(
-                Component.literal("阵法攻击其他实体"),
+                Component.literal("Attack Other Entities"),
                 originX - (64 * scaled).toInt(),
                 ((98 + alignCenterOffset) * scaled).toInt(),
                 0xFFFFFFFFu.toInt()
@@ -198,7 +198,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
             genToggleButton(
                 { settings.displayParticleOnlyTrigger = it },
                 { settings.displayParticleOnlyTrigger },
-                Component.literal(if (settings.displayParticleOnlyTrigger) "§c关闭" else "§a开启")
+                Component.literal(if (settings.displayParticleOnlyTrigger) "§cDisabled" else "§aEnabled")
             ).bounds(
                 originX + (64 * scaled).toInt(),
                 (126 * scaled).toInt(),
@@ -207,8 +207,8 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
                 Tooltip.create(
                     Component.literal(
                         """
-                            开启此选项时, 阵法的粒子只会在阵法被激活时展示
-                            在阵法没有被激活后6秒则会消失
+                            When enabled, formation particles are only shown while the formation is active
+                            They disappear 6 seconds after the formation deactivates
                         """.trimIndent()
                     )
                 )
@@ -218,7 +218,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
 
         addRenderableOnly(
             RealmsLabel(
-                Component.literal("阵法粒子始终显示"),
+                Component.literal("Always Show Formation Particles"),
                 originX - (64 * scaled).toInt(),
                 ((120 + alignCenterOffset) * scaled).toInt(),
                 0xFFFFFFFFU.toInt()
@@ -228,7 +228,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
 
         addRenderableOnly(
             RealmsLabel(
-                Component.literal("防御光幕始终显示"),
+                Component.literal("Always Show Defense Barrier"),
                 originX - (64 * scaled).toInt(),
                 ((142 + alignCenterOffset) * scaled).toInt(),
                 0xFFFFFFFFU.toInt()
@@ -241,7 +241,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
             genToggleButton(
                 { settings.displayDefendBallOnlyTrigger = it },
                 { settings.displayDefendBallOnlyTrigger },
-                Component.literal(if (settings.displayDefendBallOnlyTrigger) "§c关闭" else "§a开启")
+                Component.literal(if (settings.displayDefendBallOnlyTrigger) "§cDisabled" else "§aEnabled")
             ).bounds(
                 originX + (64 * scaled).toInt(),
                 (148 * scaled).toInt(),
@@ -250,8 +250,8 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
                 Tooltip.create(
                     Component.literal(
                         """
-                            开启此选项时, 带有防御水晶的光球只会在阵法被激活时展示
-                            在阵法没有被激活后6秒则会消失
+                            When enabled, the orb with the defense crystal is only shown while the formation is active
+                            It disappears 6 seconds after the formation deactivates
                         """.trimIndent()
                     )
                 )
@@ -267,11 +267,11 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
         textField.tooltip = Tooltip.create(
             Component.literal(
                 """
-                            阵法的触发范围
-                            在阵法的有效范围内,可以控制阵法触发
-                            当实体进入设定的触发范围时,阵法激活
-                            直到实体离开阵法的有效范范围为止
-                            设定为-1则代表触发范围和有效范围相同
+                            Formation trigger range
+                            Within the formation's effective range, this controls when it triggers
+                            The formation activates when an entity enters the set trigger range
+                            and stays active until the entity leaves the effective range
+                            Set to -1 to make the trigger range equal the effective range
                         """.trimIndent()
             )
         )
@@ -294,7 +294,7 @@ class FormationSettingScreen(val clickPos: BlockPos, var settings: FormationSett
 
         addRenderableOnly(
             RealmsLabel(
-                Component.literal("阵法生效范围"),
+                Component.literal("Effective Range"),
                 originX - (64 * scaled).toInt(),
                 ((164 + alignCenterOffset) * scaled).toInt(),
                 0xFFFFFFFFU.toInt()

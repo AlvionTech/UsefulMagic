@@ -1,5 +1,6 @@
 package cn.coostack.usefulmagic.skill.api
 
+import cn.coostack.usefulmagic.UsefulMagic
 import net.minecraft.world.entity.LivingEntity
 import java.util.UUID
 import java.util.function.Predicate
@@ -111,7 +112,16 @@ class EntitySkillManager(var owner: LivingEntity) {
     fun tick() {
         handleCountDown()
         if (!hasActiveSkill()) return
-        handleActiveSkill()
+        // A bug inside a skill must not crash the server (entity tick exceptions are
+        // fatal in vanilla). Interrupt the offending skill and keep the entity alive.
+        try {
+            handleActiveSkill()
+        } catch (e: Throwable) {
+            UsefulMagic.logger.error(
+                "Skill '${active?.getSkillID()}' threw during tick; interrupting it", e
+            )
+            interruptActiveSkill(true)
+        }
     }
 
     private fun handleActiveSkill() {

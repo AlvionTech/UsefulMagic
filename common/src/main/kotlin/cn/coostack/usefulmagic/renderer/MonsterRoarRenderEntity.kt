@@ -2,7 +2,7 @@ package cn.coostack.usefulmagic.renderer
 
 import cn.coostack.cooparticlesapi.annotations.CodecField
 import cn.coostack.cooparticlesapi.annotations.CooAutoRegister
-import cn.coostack.cooparticlesapi.annotations.renderer.handle.RenderEntityHelper
+import cn.coostack.cooparticlesapi.annotations.renderer.handle.RenderEntityRegistryHelper
 import cn.coostack.cooparticlesapi.renderer.AutoRenderEntity
 import cn.coostack.cooparticlesapi.renderer.RenderEntity
 import cn.coostack.cooparticlesapi.renderer.client.RenderUtil
@@ -437,7 +437,7 @@ class MonsterRoarRenderEntity(
 
         @JvmField
         val CODEC: StreamCodec<FriendlyByteBuf, RenderEntity> =
-            RenderEntityHelper.generateCodec(MonsterRoarRenderEntity())
+            RenderEntityRegistryHelper.generateCodec(MonsterRoarRenderEntity())
 
         @JvmField
         val ID: ResourceLocation =

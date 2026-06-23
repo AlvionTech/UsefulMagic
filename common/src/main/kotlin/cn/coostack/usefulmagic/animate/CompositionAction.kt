@@ -32,6 +32,8 @@ class CompositionAction<T : ParticleComposition>(val composition: T) : AnimateAc
         cancelMethod(composition)
     }
 
+    override fun addPreTickActionPost(action: CompositionAction<T>.() -> Unit): CompositionAction<T> { return this }
+
     override fun addPreTickAction(action: CompositionAction<T>.() -> Unit): CompositionAction<T> {
         actions.add(action)
         return this

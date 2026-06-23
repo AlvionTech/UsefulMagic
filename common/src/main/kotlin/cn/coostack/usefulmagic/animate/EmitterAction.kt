@@ -17,7 +17,7 @@ class EmitterAction<T : ParticleEmitters>(val emitter: T) : AnimateAction(), Tic
     }
 
     override fun checkDone(): Boolean {
-        return emitter.cancelled
+        return emitter.canceled
     }
 
     override fun tick() {
@@ -31,6 +31,8 @@ class EmitterAction<T : ParticleEmitters>(val emitter: T) : AnimateAction(), Tic
     override fun onDone() {
         cancelMethod(emitter)
     }
+
+    override fun addPreTickActionPost(action: EmitterAction<T>.() -> Unit): EmitterAction<T> { return this }
 
     override fun addPreTickAction(action: EmitterAction<T>.() -> Unit): EmitterAction<T> {
         actions.add(action)

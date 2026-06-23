@@ -43,10 +43,11 @@ class ManaCrystal : Item(Properties()) {
                 SoundSource.PLAYERS,
                 3f, 2f
             )
+        
+            user.manaAbsorptionRate += 1
+            stack.count -= 1
         }
-        user.manaAbsorptionRate += 1
-        stack.count -= 1
-        return super.use(world, user, hand)
+        return InteractionResultHolder.sidedSuccess(user.getItemInHand(hand), world.isClientSide)
     }
 
 }

@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.formation
+package cn.coostack.usefulmagic.formation
 
 import cn.coostack.cooparticlesapi.barrages.BarrageManager
 import cn.coostack.cooparticlesapi.extend.minus
@@ -553,7 +553,7 @@ class CrystalFormation(override var world: Level?, override var owner: UUID?, ov
                     targetPos = end - start
                     maxTick = 1
                     templateData.apply {
-                        setTextureSheet(CooParticleTextureSheet.ADDITION_BLEND_TRANSLUCENT)
+                        setTextureSheet("ADDITION_BLEND_TRANSLUCENT")
                         color = Math3DUtil.colorOf(230, 130, 255)
                     }
                     simpleData.apply {

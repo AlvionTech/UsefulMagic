@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.entity.custom.skills.book
+package cn.coostack.usefulmagic.entity.custom.skills.book
 
 import cn.coostack.cooparticlesapi.network.particle.emitters.ParticleEmittersManager
 import cn.coostack.cooparticlesapi.network.particle.composition.manager.ParticleCompositionManager
@@ -49,7 +49,7 @@ class HealthReverseSkill : Skill<MagicBookEntity>, SkillCondition<MagicBookEntit
         val maxHealth = source.getUnlimitMaxHealth()
         source.health = maxHealth - source.health
         style?.status?.setStatus(2)
-        shrink?.cancelled = true
+        shrink?.canceled = true
         style = null
         shrink = null
     }
@@ -69,7 +69,7 @@ class HealthReverseSkill : Skill<MagicBookEntity>, SkillCondition<MagicBookEntit
         entity.health = (entity.health - 50f).coerceAtLeast(0.5f)
         style?.status?.setStatus(2)
         style = null
-        shrink?.cancelled = true
+        shrink?.canceled = true
         shrink = null
     }
 

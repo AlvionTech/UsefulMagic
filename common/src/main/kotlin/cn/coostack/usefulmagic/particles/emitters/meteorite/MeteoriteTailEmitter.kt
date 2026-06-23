@@ -45,24 +45,26 @@ class MeteoriteTailEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos,
         emittersInterpolator.setRefiner(1.25)
     }
 
-    val fireCommand = ParticleCommandQueue()
-        .add(
-            ParticleNoiseCommand()
-                .strength(0.03)
-                .frequency(0.15)
-                .speed(0.12)
-                .affectY(1.0)
-                .clampSpeed(0.8)
-                .useLifeCurve(true)
-        )
-        .add(
-            ParticleDragCommand()
-                .damping(0.01)
-                .minSpeed(0.0)
-                .linear(0.0)
-        )
-
-
+        val fireCommand by lazy {
+        ParticleCommandQueue()
+            .add(
+                ParticleNoiseCommand()
+                    .strength(0.03)
+                    .frequency(0.15)
+                    .speed(0.12)
+                    .affectY(1.0)
+                    .clampSpeed(0.8)
+                    .useLifeCurve(true)
+            )
+            .add(
+                ParticleDragCommand()
+                    .damping(0.01)
+                    .minSpeed(0.0)
+                    .linear(0.0)
+            )
+    
+    
+    }
     override fun singleParticleAction(
         controler: ParticleControler,
         data: ControlableParticleData,
@@ -95,7 +97,7 @@ class MeteoriteTailEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos,
                     velocity = Vec3(0.0, 0.0, 1.0)
                     visibleRange = 512.0f
                     color = Vector3f(1.0f, 1.0f, 1.0f)
-                    setTextureSheet(CooParticleTextureSheet.ADDITION_BLEND_TRANSLUCENT)
+                    setTextureSheet("ADDITION_BLEND_TRANSLUCENT")
                     sign = 1
                 }
 
@@ -156,7 +158,7 @@ class MeteoriteTailEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos,
                     color = Vector3f(0.439216f, 0.439216f, 0.439216f)
                     alpha = 1.0f
                     light = -1
-                    setTextureSheet(CooParticleTextureSheet.ADDITION_BLEND_TRANSLUCENT)
+                    setTextureSheet("ADDITION_BLEND_TRANSLUCENT")
                     effect = ControlableCloudEffect(uuid)
                 }
 
@@ -199,6 +201,7 @@ class MeteoriteTailEmitter(pos: Vec3, world: Level?) : AutoParticleEmitters(pos,
 
 
     override fun doTick() {
+        if (world?.isClientSide != true) return
 
     }
 }

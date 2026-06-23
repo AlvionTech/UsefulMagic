@@ -107,7 +107,8 @@ object KeyListener {
         val chargedWandIdentity = player.chargedItemIdentity
         if (chargedWandIdentity != 0) {
             if (chargedWandIdentity == currentWandIdentity) return false
-        } else if (ItemStack.isSameItemSameComponents(chargedWandStack, currentWand)) {
+        }
+        if (ItemStack.isSameItemSameComponents(chargedWandStack, currentWand)) {
             return false
         }
 

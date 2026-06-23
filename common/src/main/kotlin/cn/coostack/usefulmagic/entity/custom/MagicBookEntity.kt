@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.entity.custom
+package cn.coostack.usefulmagic.entity.custom
 
 import cn.coostack.cooparticlesapi.barrages.BarrageManager
 import cn.coostack.cooparticlesapi.barrages.HitBox
@@ -447,7 +447,7 @@ class MagicBookEntity(entityType: EntityType<out PathfinderMob>, world: Level) :
                     targetPos = Vec3.ZERO.random() * Random.nextDouble(endRandomRange / 4, endRandomRange)
                     maxTick = 1
                     templateData.apply {
-                        setTextureSheet(CooParticleTextureSheet.ADDITION_BLEND_TRANSLUCENT)
+                        setTextureSheet("ADDITION_BLEND_TRANSLUCENT")
                         color = Math3DUtil.colorOf(
                             121, 211, 249
                         )

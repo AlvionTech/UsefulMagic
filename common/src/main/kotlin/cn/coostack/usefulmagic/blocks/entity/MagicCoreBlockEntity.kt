@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.blocks.entity
+package cn.coostack.usefulmagic.blocks.entity
 
 import cn.coostack.cooparticlesapi.CooParticlesAPI
 import cn.coostack.cooparticlesapi.barrages.HitBox

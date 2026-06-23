@@ -1,4 +1,4 @@
-﻿package cn.coostack.usefulmagic.entity.util
+package cn.coostack.usefulmagic.entity.util
 
 import cn.coostack.cooparticlesapi.barrages.HitBox
 import cn.coostack.cooparticlesapi.network.particle.composition.manager.ParticleCompositionManager

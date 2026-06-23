@@ -43,24 +43,27 @@ class LightningParticleEmitters(pos: Vec3, world: Level?) : AutoParticleEmitters
     @CodecField
     var subCount = 7 minRangeTo 9
 
-    val command = ParticleCommandQueue()
-        .add(
-            ParticleFlowFieldCommand()
-                .amplitude(0.08)
-                .frequency(0.2)
-                .timeScale(1.0)
-                .phaseOffset(0.1)
-                .worldOffset(Vec3(0.0, 0.0, 0.0))
-        )
-        .add(
-            ParticleDragCommand()
-                .damping(0.2)
-                .linear(0.005)
-                .minSpeed(0.01)
-        )
-
-
+        val command by lazy {
+        ParticleCommandQueue()
+            .add(
+                ParticleFlowFieldCommand()
+                    .amplitude(0.08)
+                    .frequency(0.2)
+                    .timeScale(1.0)
+                    .phaseOffset(0.1)
+                    .worldOffset(Vec3(0.0, 0.0, 0.0))
+            )
+            .add(
+                ParticleDragCommand()
+                    .damping(0.2)
+                    .linear(0.005)
+                    .minSpeed(0.01)
+            )
+    
+    
+    }
     override fun doTick() {
+        if (world?.isClientSide != true) return
         command.updateWithTypes<ParticleFlowFieldCommand> {
             worldOffset = this@LightningParticleEmitters.pos
         }

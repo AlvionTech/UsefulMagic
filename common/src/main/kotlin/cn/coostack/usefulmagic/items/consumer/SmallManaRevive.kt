@@ -51,16 +51,21 @@ class SmallManaRevive(settings: Properties) : Item(settings) {
             user.mana = user.mana.coerceAtMost(user.maxMana)
         }
 
-        if (stack.isEmpty) {
+        val remainingStack = stack.copy()
+        if (!user.isCreative) {
+            remainingStack.shrink(1)
+        }
+
+        if (remainingStack.isEmpty) {
             return ItemStack(UsefulMagicItems.SMALL_MANA_BOTTLE.getItem())
         }
         if (!user.isCreative) {
-            val stack = ItemStack(UsefulMagicItems.SMALL_MANA_BOTTLE.getItem())
-            if (!user.inventory.add(stack)) {
-                user.drop(stack, false)
+            val emptyBottle = ItemStack(UsefulMagicItems.SMALL_MANA_BOTTLE.getItem())
+            if (!user.inventory.add(emptyBottle)) {
+                user.drop(emptyBottle, false)
             }
         }
-        return stack
+        return remainingStack
     }
 
 
