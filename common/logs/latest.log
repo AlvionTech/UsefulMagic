@@ -1,8 +1,8 @@
-[17:06:02] [Attach Listener/INFO]: [STDERR]: WARNING: A Java agent has been loaded dynamically (/home/lopyhupis/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.6/46e2545d7a97b6ccb195621650c5957279eb4812/byte-buddy-agent-1.14.6.jar)
+[18:14:17] [Attach Listener/INFO]: [STDERR]: WARNING: A Java agent has been loaded dynamically (/home/lopyhupis/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.6/46e2545d7a97b6ccb195621650c5957279eb4812/byte-buddy-agent-1.14.6.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
 WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
 WARNING: Dynamic loading of agents will be disallowed by default in a future release
-[17:06:04] [Test worker/ERROR]: Skill 'boom' threw during tick; interrupting it
+[18:14:25] [Test worker/ERROR]: Skill 'boom' threw during tick; interrupting it
 java.lang.RuntimeException: boom from skill
 	at cn.coostack.usefulmagic.skill.EntitySkillManagerTest$ThrowingSkill.holdingTick(EntitySkillManagerTest.kt:53) ~[test/:?]
 	at cn.coostack.usefulmagic.skill.api.EntitySkillManager.handleActiveSkill(EntitySkillManager.kt:136) ~[main/:?]
@@ -79,7 +79,7 @@ java.lang.RuntimeException: boom from skill
 	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) [gradle-messaging-8.12.jar:8.12]
 	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) [gradle-messaging-8.12.jar:8.12]
 	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92) [gradle-messaging-8.12.jar:8.12]
-	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source) [?:?]
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source) [?:?]
 	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200) [gradle-testing-base-infrastructure-8.12.jar:8.12]
 	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132) [gradle-testing-base-infrastructure-8.12.jar:8.12]
 	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103) [gradle-testing-base-infrastructure-8.12.jar:8.12]
