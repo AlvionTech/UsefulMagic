@@ -2,6 +2,7 @@ plugins {
     id 'multiloader-common'
     id 'net.neoforged.moddev'
     id 'org.jetbrains.kotlin.jvm'
+    id 'jacoco'
 }
 
 neoForge {
@@ -43,6 +44,24 @@ sourceSets {
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    finalizedBy tasks.named('jacocoTestReport')
+}
+
+// JaCoCo coverage report (HTML to read locally, XML for SonarQube ingestion).
+jacocoTestReport {
+    dependsOn tasks.named('test')
+    reports {
+        xml.required = true
+        html.required = true
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                '**/datagen/**',
+                '**/mixin/**',
+            ])
+        }))
+    }
 }
 
 configurations {
